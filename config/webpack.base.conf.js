@@ -2,10 +2,12 @@ const path = require("path");
 const fs = require("fs");
 
 const webpack = require("webpack");
+const { VueLoaderPlugin } = require("vue-loader");
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
+const SvgStore = require("webpack-svgstore-plugin");
 
 const PATHS = {
   src: path.join(__dirname, "../src"),
@@ -70,10 +72,32 @@ module.exports = {
           outputPath: `${PATHS.assets}fonts`
         }
       },
+      // {
+      //   test: /\.svg$/,
+      //   include: [`${PATHS.src}/${PATHS.assets}sprite`],
+      //   use: [
+      //     { loader: "file-loader" },
+      //     {
+      //       loader: "svgo-loader",
+      //       options: {
+      //         plugins: [
+      //           {
+      //             removeAttrs: {
+      //               attrs: ["width", "height"]
+      //             }
+      //           },
+      //           { removeTitle: true },
+      //           { convertColors: { currentColor: true } }
+      //         ]
+      //       }
+      //     }
+      //   ]
+      // },
       {
         // images / icons
         test: /\.(png|jpg|gif|svg)$/,
         loader: "file-loader",
+        exclude: [`${PATHS.src}/${PATHS.assets}sprite`],
         options: {
           name: "[name].[ext]"
         }
@@ -121,6 +145,7 @@ module.exports = {
         ]
       },
       {
+        // Pug
         test: /\.pug$/,
         use: ["pug-loader"]
       }
@@ -134,17 +159,37 @@ module.exports = {
     }
   },
   plugins: [
+    new SvgStore({
+      // svgo options
+      svgoOptions: {
+        plugins: [
+          {
+            removeAttrs: {
+              attrs: ["width", "height"]
+            }
+          },
+          { removeTitle: true },
+          { convertColors: { currentColor: true } }
+        ]
+      },
+      prefix: "i-"
+    }),
+    // Provide utils
     new webpack.ProvidePlugin({
       $: "utils"
     }),
+    // Vue
     new VueLoaderPlugin(),
+    // Css
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`
     }),
+    // Copy files
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/static`, to: "" }
     ]),
+    // PUG pages
     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({
