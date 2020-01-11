@@ -11,16 +11,16 @@ export default class Slider {
 
     this.event = {
       update: {
-        begin: new CustomEvent("slider:updatebegin", { detail: this }),
-        complete: new CustomEvent("slider:updatecomplete", { detail: this })
+        begin: new CustomEvent('slider:updatebegin', { detail: this }),
+        complete: new CustomEvent('slider:updatecomplete', { detail: this })
       },
       prev: {
-        begin: new CustomEvent("slider:prevbegin", { detail: this }),
-        complete: new CustomEvent("slider:prevcomplete", { detail: this })
+        begin: new CustomEvent('slider:prevbegin', { detail: this }),
+        complete: new CustomEvent('slider:prevcomplete', { detail: this })
       },
       next: {
-        begin: new CustomEvent("slider:nextbegin", { detail: this }),
-        complete: new CustomEvent("slider:nextcomplete", { detail: this })
+        begin: new CustomEvent('slider:nextbegin', { detail: this }),
+        complete: new CustomEvent('slider:nextcomplete', { detail: this })
       }
     };
   }
@@ -69,13 +69,13 @@ export default class Slider {
     this.hideSlides();
 
     switch (action) {
-      case "prev":
+      case 'prev':
         if (this.loop) {
           this.index =
             this.index <= 0 ? this.DOM.slides.length - 1 : this.index - 1;
         } else if (this.index > 0) this.index = this.index - 1;
         break;
-      case "next":
+      case 'next':
         if (this.loop) {
           this.index =
             this.index === this.DOM.slides.length - 1 ? 0 : this.index + 1;
@@ -102,23 +102,23 @@ export default class Slider {
 
   prev() {
     this.DOM.el.dispatchEvent(this.event.prev.begin);
-    this.update("prev");
+    this.update('prev');
     this.DOM.el.dispatchEvent(this.event.prev.complete);
   }
 
   next() {
     this.DOM.el.dispatchEvent(this.event.next.begin);
-    this.update("next");
+    this.update('next');
     this.DOM.el.dispatchEvent(this.event.next.complete);
   }
 
   hideSlides() {
     this.DOM.slides.forEach(slide => {
-      slide.classList.remove("active");
+      slide.classList.remove('active');
     });
   }
 
   showSlide() {
-    this.DOM.active.classList.add("active");
+    this.DOM.active.classList.add('active');
   }
 }

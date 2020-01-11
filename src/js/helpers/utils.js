@@ -18,7 +18,7 @@ export const each = (selector, cb) => {
   });
 };
 
-export const delegate = (selector, resolve, reject, ev = "click") => {
+export const delegate = (selector, resolve, reject, ev = 'click') => {
   document.addEventListener(
     ev,
     e => {
@@ -35,7 +35,7 @@ export const delegate = (selector, resolve, reject, ev = "click") => {
 };
 
 export const dispatch = (
-  { el, eventName, detail } = { el: document, eventName: "", detail: null }
+  { el, eventName, detail } = { el: document, eventName: '', detail: null }
 ) => {
   if (!eventName) throw new Error('Parameter "eventName" is empty');
 

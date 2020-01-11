@@ -1,8 +1,8 @@
 // JS
-import "~/js/main";
+import '~/js/main';
 
 // Sass
-import "~/assets/sass/main.sass";
+import '~/assets/sass/main.sass';
 
 // SVG Sprite
-import "~/assets/sprite/";
+import '~/assets/sprite/';

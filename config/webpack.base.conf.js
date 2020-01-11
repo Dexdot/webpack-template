@@ -72,27 +72,6 @@ module.exports = {
           outputPath: `${PATHS.assets}fonts`
         }
       },
-      // {
-      //   test: /\.svg$/,
-      //   include: [`${PATHS.src}/${PATHS.assets}sprite`],
-      //   use: [
-      //     { loader: "file-loader" },
-      //     {
-      //       loader: "svgo-loader",
-      //       options: {
-      //         plugins: [
-      //           {
-      //             removeAttrs: {
-      //               attrs: ["width", "height"]
-      //             }
-      //           },
-      //           { removeTitle: true },
-      //           { convertColors: { currentColor: true } }
-      //         ]
-      //       }
-      //     }
-      //   ]
-      // },
       {
         // images / icons
         test: /\.(png|jpg|gif|svg)$/,
@@ -147,7 +126,10 @@ module.exports = {
       {
         // Pug
         test: /\.pug$/,
-        use: ["pug-loader"]
+        loader: "pug-loader"
+        // options: {
+        //   pretty: true
+        // }
       }
     ]
   },

@@ -25,8 +25,8 @@ export function isMobileSafari() {
 
 export function isSafari() {
   return (
-    navigator.userAgent.indexOf("Safari") != -1 &&
-    navigator.userAgent.indexOf("Chrome") == -1 &&
+    navigator.userAgent.indexOf('Safari') != -1 &&
+    navigator.userAgent.indexOf('Chrome') == -1 &&
     !isMobileDevice()
   );
 }
@@ -37,11 +37,11 @@ export function getIOSVersion() {
 }
 
 export function isAndroid() {
-  return navigator.userAgent.toLowerCase().indexOf("android") > -1;
+  return navigator.userAgent.toLowerCase().indexOf('android') > -1;
 }
 
 export function isEdge() {
-  return navigator.userAgent.indexOf("Edge/") > -1;
+  return navigator.userAgent.indexOf('Edge/') > -1;
 }
 
 export function ie11() {
@@ -49,5 +49,5 @@ export function ie11() {
 }
 
 export function isFirefox() {
-  return navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+  return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 }
