@@ -35,13 +35,13 @@ export const delegate = (selector, resolve, reject, ev = 'click') => {
 };
 
 export const dispatch = (
-  { el, eventName, detail } = { el: document, eventName: '', detail: null }
+  { el, name, detail } = { el: document, name: '', detail: null }
 ) => {
-  if (!eventName) throw new Error('Parameter "eventName" is empty');
+  if (!name) throw new Error('Event name not set');
 
   if (detail) {
-    el.dispatchEvent(new CustomEvent(eventName, { detail }));
+    el.dispatchEvent(new CustomEvent(name, { detail }));
   } else {
-    el.dispatchEvent(new Event(eventName));
+    el.dispatchEvent(new Event(name));
   }
 };
