@@ -13,10 +13,10 @@ const PATHS = {
   assets: "assets/"
 };
 
-const PAGES_DIR = PATHS.src;
+const PAGES_DIR = `${PATHS.src}/pages/`;
 const PAGES = fs
   .readdirSync(PAGES_DIR)
-  .filter(fileName => fileName.endsWith(".html"));
+  .filter(fileName => fileName.endsWith(".pug"));
 
 module.exports = {
   externals: {
@@ -119,6 +119,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.pug$/,
+        use: ["pug-loader"]
       }
     ]
   },
@@ -141,19 +145,11 @@ module.exports = {
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/static`, to: "" }
     ]),
-
-    /*
-      Automatic creation any html pages (Don't forget to RERUN dev server!)
-      See more:
-      https://github.com/vedees/webpack-template/blob/master/README.md#create-another-html-files
-      Best way to create pages:
-      https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
-    */
     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({
           template: `${PAGES_DIR}/${page}`,
-          filename: `./${page}`
+          filename: `./${page.replace(/\.pug/, ".html")}`
         })
     )
   ]

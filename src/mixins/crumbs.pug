@@ -1,0 +1,6 @@
+mixin crumbs(list = ['Главная'])
+  ul.crumbs&attributes(attributes)
+    each link in list
+      li
+        a.crumbs__link(href="#")= link
+

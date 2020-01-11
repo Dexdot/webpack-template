@@ -1,0 +1,18 @@
+doctype html
+html(lang='ru')
+  include ../templates/mixins.pug
+  include ../templates/head.pug
+  
+  body
+    //- SVG Sprite
+    .u-hidden
+      //- include ../../sprite/sprite.svg
+
+    include ../templates/blocks.pug
+    
+    //- Main content
+    main
+      block content
+
+    //- Footer
+    include ../blocks/footer/footer.pug
