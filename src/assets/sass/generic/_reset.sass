@@ -1,0 +1,118 @@
+/**
+ * RESET
+ */
+
+/**
+ * As well as using normalize.css, it is often advantageous to remove all
+ * margins from certain elements.
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+figure,
+table, th, td, caption,
+hr
+  margin: 0
+  padding: 0
+
+
+
+
+
+/**
+ * Give a help cursor to elements that give extra info on `:hover`.
+ */
+abbr[title],
+dfn[title]
+  cursor: help
+
+
+
+
+
+/**
+ * Remove underlines from potentially troublesome elements.
+ */
+u,
+ins
+  text-decoration: none
+
+
+
+
+/**
+ * Apply faux underlines to inserted text via `border-bottom`.
+ */
+ins
+  border-bottom: 1px solid
+
+
+
+
+/**
+ * Remove links underline
+ */
+a
+  &:-webkit-any-link
+    text-decoration: none
+
+  &,
+  &:hover,
+  &:focus,
+  &:visited,
+  &:active 
+    text-decoration: none
+
+
+
+
+/**
+ * Form elements styles
+ */
+button,
+input,
+textarea,
+fieldset
+  background: 0
+  border: 0
+  outline: 0
+
+  margin: 0
+  padding: 0
+
+
+
+/**
+ * List styles
+ */
+ul,
+ol
+  padding: 0
+  list-style: none
+
+
+/** 
+ * Address
+ */
+address
+  font-style: unset
+
+
+/**
+ * Set the global `box-sizing` state to `border-box`.
+ *
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ * paulirish.com/2012/box-sizing-border-box-ftw
+ */
+
+html
+  box-sizing: border-box
+
+*
+  &,
+  &:before,
+  &:after
+    box-sizing: inherit
+

@@ -1,0 +1,32 @@
+@font-face
+  font-family: 'TT Norms'
+  src: url('../fonts/norms/subset-TTNorms-Regular.woff2') format('woff2'),url('../fonts/norms/subset-TTNorms-Regular.woff') format('woff')
+  font-style: normal
+  font-weight: 400
+  font-display: swap  
+
+@font-face
+  font-family: 'TT Norms'
+  src: url('../fonts/norms/subset-TTNorms-Medium.woff2') format('woff2'),url('../fonts/norms/subset-TTNorms-Medium.woff') format('woff')
+  font-style: normal
+  font-weight: 500
+  font-display: swap
+
+@font-face
+  font-family: 'TT Norms'
+  src: url('../fonts/norms/subset-TTNorms-Bold.woff2') format('woff2'),url('../fonts/norms/subset-TTNorms-Bold.woff') format('woff')
+  font-style: normal
+  font-weight: 700
+  font-display: swap
+  
+=norms($weight: r)
+  @if $weight == r
+    font-family: 'TT Norms', sans-serif
+    font-weight: 400
+  @if $weight == m
+    font-family: 'TT Norms', sans-serif
+    font-weight: 500
+  @if $weight == b
+    font-family: 'TT Norms', sans-serif
+    font-weight: 700
+
