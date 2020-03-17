@@ -64,7 +64,7 @@ module.exports = {
       },
       {
         // Fonts
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
@@ -73,7 +73,17 @@ module.exports = {
         }
       },
       {
-        // images / icons
+        // Images svg
+        test: /\.(svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: `/assets/img/svg`,
+          publicPath: '../img/svg'
+        }
+      },
+      {
+        // Images / icons
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         exclude: [`${PATHS.src}/${PATHS.assets}sprite`],
@@ -162,7 +172,7 @@ module.exports = {
     }),
     // Vue
     new VueLoaderPlugin(),
-    // Css
+    // CSS
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`
     }),

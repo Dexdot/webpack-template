@@ -1,13 +1,15 @@
-const webpack = require("webpack");
-const merge = require("webpack-merge");
-const baseWebpackConfig = require("./webpack.base.conf");
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const baseWebpackConfig = require('./webpack.base.conf');
+const devip = require('dev-ip');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
-  mode: "development",
-  devtool: "cheap-module-eval-source-map",
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: baseWebpackConfig.externals.paths.dist,
+    host: Array.isArray(devip()) ? devip()[0] : devip(),
     port: 8081,
+    contentBase: baseWebpackConfig.externals.paths.dist,
     overlay: {
       warnings: true,
       errors: true
@@ -15,7 +17,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin({
-      filename: "[file].map"
+      filename: '[file].map'
     })
   ]
 });

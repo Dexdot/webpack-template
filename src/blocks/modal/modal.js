@@ -14,25 +14,29 @@ const onEscape = e => {
 export const init = () => {
   // Open
   $.delegate(`[data-modal-open]`, (e, el) => {
-    const name = el.dataset.modalOpen;
-    const modal = $.qs(`[data-modal="${name}"]`);
-    open(modal, name);
+    const modal = $.qs(`[data-modal="${el.dataset.modalOpen}"]`);
+    if (!modal) return false;
+
+    open(modal);
   });
 
   // Close
   $.delegate(`[data-modal-close]`, (e, el) => {
-    const name = el.dataset.modalClose;
-    const modal = $.qs(`[data-modal="${name}"]`);
-    close(modal, name);
+    const modal = $.qs(`[data-modal="${el.dataset.modalClose}"]`);
+    if (!modal) return false;
+
+    close(modal);
   });
 };
 
-export function open(el, modal) {
-  $.qs('body').classList.add(`modal-${modal}-active`);
+export function open(el) {
+  const modalName = el.dataset.modal;
+  $.qs('body').classList.add(`modal-${modalName}-active`);
+
   $.dispatch({
     el: document,
     name: 'beforeModalOpen',
-    detail: { modal }
+    detail: { modalName }
   });
 
   scroll.disable(el);
@@ -42,16 +46,18 @@ export function open(el, modal) {
   $.dispatch({
     el: document,
     name: 'afterModalOpen',
-    detail: { modal }
+    detail: { modalName }
   });
 }
 
-export function close(el, modal) {
-  $.qs('body').classList.remove(`modal-${modal}-active`);
+export function close(el) {
+  const modalName = el.dataset.modal;
+  $.qs('body').classList.remove(`modal-${modalName}-active`);
+
   $.dispatch({
     el: document,
-    name: 'beforeModalOpen',
-    detail: { modal }
+    name: 'beforeModalClose',
+    detail: { modalName }
   });
 
   scroll.enable();
@@ -60,7 +66,7 @@ export function close(el, modal) {
 
   $.dispatch({
     el: document,
-    eventName: 'afterModalOpen',
-    detail: { modal }
+    name: 'afterModalClose',
+    detail: { modalName }
   });
 }
