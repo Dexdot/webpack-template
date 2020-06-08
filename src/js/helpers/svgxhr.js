@@ -23,7 +23,12 @@ var svgXHR = function(options) {
     if (typeof window.baseUrl !== 'undefined') {
       baseUrl = window.baseUrl;
     } else {
-      baseUrl = location.href.substring(0, location.href.lastIndexOf('/') + 1);
+      // baseUrl = location.href.substring(0, location.href.lastIndexOf('/') + 1);
+      baseUrl =
+        window.location.protocol +
+        '//' +
+        window.location.hostname +
+        (window.location.port ? ':' + window.location.port : '');
     }
   }
 

@@ -30,7 +30,8 @@ module.exports = {
   },
   output: {
     filename: `${PATHS.assets}js/[name].js`,
-    path: PATHS.dist
+    path: PATHS.dist,
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
@@ -68,7 +69,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: `assets/fonts`,
+          outputPath: `/assets/fonts`,
           publicPath: '../fonts'
         }
       },
